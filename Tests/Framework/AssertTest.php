@@ -508,6 +508,24 @@ class Framework_AssertTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers PHPUnit_Framework_Assert::assertEqual
+     */
+    public function testAssertEqualArray()
+    {
+        $this->assertEqual(array('a', 'b' => array(1, 2)), array('a', 'b' => array(1, 2)));
+
+        try {
+            $this->assertEqual(array('a', 'b' => array(1, 2)), array('a', 'b' => array(2, 1)));
+        }
+
+        catch (PHPUnit_Framework_AssertionFailedError $e) {
+            return;
+        }
+
+        $this->fail();
+    }
+
+    /**
      * @covers PHPUnit_Framework_Assert::assertNotEquals
      */
     public function testAssertNotEqualsArray()
@@ -516,6 +534,24 @@ class Framework_AssertTest extends PHPUnit_Framework_TestCase
 
         try {
             $this->assertNotEquals(array('a', 'b' => array(1, 2)), array('a', 'b' => array(1, 2)));
+        }
+
+        catch (PHPUnit_Framework_AssertionFailedError $e) {
+            return;
+        }
+
+        $this->fail();
+    }
+
+    /**
+     * @covers PHPUnit_Framework_Assert::assertNotEqual
+     */
+    public function testAssertNotEqualArray()
+    {
+        $this->assertNotEqual(array('a', 'b' => array(1, 2)), array('a', 'b' => array(2, 1)));
+
+        try {
+            $this->assertNotEqual(array('a', 'b' => array(1, 2)), array('a', 'b' => array(1, 2)));
         }
 
         catch (PHPUnit_Framework_AssertionFailedError $e) {

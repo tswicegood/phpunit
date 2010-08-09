@@ -344,6 +344,15 @@ abstract class PHPUnit_Framework_Assert
     }
 
     /**
+     * Alias of assertEquals
+     */
+    public static function assertEqual()
+    {
+        $args = func_get_args();
+        return call_user_func_array(array(self, 'assertEquals'), $args);
+    }
+
+    /**
      * Asserts that a variable is equal to an attribute of an object.
      *
      * @param  mixed   $expected
@@ -389,6 +398,15 @@ abstract class PHPUnit_Framework_Assert
         );
 
         self::assertThat($actual, $constraint, $message);
+    }
+
+    /**
+     * Alias of assertNotEquals
+     */
+    public static function assertNotEqual()
+    {
+        $args = func_get_args();
+        return call_user_func_array(array(self, 'assertNotEquals'), $args);
     }
 
     /**
